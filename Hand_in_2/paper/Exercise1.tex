@@ -1,4 +1,35 @@
 \section*{Exercise 2.70}
 \paragraph{Problem:} Suppose \textit{E} is any positive operator acting on Alice's qubit. Show that $\bra{\psi} E \otimes \mathbb{I} \ket{\psi}$ \textit{takes the same value} when $\ket{\psi}$ is any of the four Bell states. Suppose some malevolent third party (`Eve') intercepts Alice's qubit on the way to Bob in the superdense coding protocol. Can Eve infer anything about which of the four possible bit strings 00, 01, 10, 11 Alice is trying to send? If so, how, or if not, why not? 
 
-\paragraph{Solution:}
+\paragraph{Solution:} Let's number the Bell states as 
+\begin{align}
+    \ket{\psi_1} &= \frac{\ket{0}_A \otimes \ket{0}_B + \ket{1}_A \otimes \ket{1}_B}{\sqrt{2}}\\
+    \ket{\psi_2} &= \frac{\ket{0}_A \otimes \ket{0}_B - \ket{1}_A \otimes \ket{1}_B}{\sqrt{2}}\\
+    \ket{\psi_3} &= \frac{\ket{0}_A \otimes \ket{1}_B + \ket{1}_A \otimes \ket{0}_B}{\sqrt{2}}\\
+    \ket{\psi_4} &= \frac{\ket{0}_A \otimes \ket{1}_B - \ket{1}_A \otimes \ket{0}_B}{\sqrt{2}}.
+\end{align}
+I will not write the subscript A or B further, but infer that the first ket is Alice and second Bob. Applying the operator $E \otimes \I$ on the states we get the following
+\begin{align}
+    \bra{\psi_1} E \otimes \I \ket{\psi_1} &= \frac{1}{2} \left( \dbra{0}{0} + \dbra{1}{1} \right) E \otimes \I \left( \dket{0}{0} + \dket{1}{1}\right)\\
+    &= \frac{1}{2} \left( \dbra{0}{0} + \dbra{1}{1} \right) \left( E\dket{0}{0} + E \dket{1}{1} \right)\\
+    &= \frac{1}{2} ( \bra{0} E \ket{0} \otimes \bra{0}\ket{0} + \bra{0} E \ket{1} \otimes \bra{0}\ket{1}\\
+    &\mspace{21mu} + \bra{1} E \ket{0} \otimes \bra{1}\ket{0} + \bra{1} E \ket{1} \otimes \bra{1} \ket{1} )\\
+    &= \frac{\bra{0} E \ket{0} + \bra{1} E \ket{1}}{2}
+\end{align}
+Writing this for the other states with fewer steps
+\begin{align}
+    \bra{\psi_2} E \otimes \I \ket{\psi_2} &= \frac{1}{2}(\dbra{0}{0} - \dbra{1}{1}) (E \dket{0}{0} - E \dket{1}{1})\\
+    &= \frac{1}{2}(\bra{0} E \ket{0} \otimes \bra{0}\ket{0} - 0 - 0  + \bra{1} E \ket{1} \otimes \bra{1} \ket{1})\\
+    &= \frac{\bra{0} E \ket{0} + \bra{1} E \ket{1}}{2}
+\end{align}
+\begin{align}
+    \bra{\psi_3} E \otimes \I \ket{\psi_3} &= \frac{1}{2} (\dbra{0}{1} + \dbra{1}{0}) (E \dket{0}{1} + E \dket{1}{0})\\
+    &= \frac{1}{2} (\bra{0} E \ket{0} \otimes \bra{1}\ket{1} + 0 + 0 + \bra{1} E \ket{1} \otimes \bra{0}\ket{0}) \\
+    &= \frac{\bra{0} E \ket{0} + \bra{1} E \ket{1}}{2}
+\end{align}
+\begin{align}
+    \bra{\psi_4} E \otimes \I \ket{\psi_4} &= \frac{1}{2} ( \dbra{0}{1} - \dbra{1}{0} ) (E \dket{0}{1} - E \dket{1}{0})\\
+    &= \frac{1}{2} ( \bra{0} E \ket{0} \otimes \bra{1}\ket{1} - 0 - 0 + \bra{1}E \ket{1} )\\
+    &=\frac{\bra{0} E \ket{0} + \bra{1} E \ket{1}}{2}
+\end{align}
+\qed
