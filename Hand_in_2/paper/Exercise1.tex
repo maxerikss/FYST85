@@ -3,10 +3,10 @@
 
 \paragraph{Solution:} Let's number the Bell states as 
 \begin{align}
-    \ket{\psi_1} &= \frac{\ket{0}_A \otimes \ket{0}_B + \ket{1}_A \otimes \ket{1}_B}{\sqrt{2}}\\
-    \ket{\psi_2} &= \frac{\ket{0}_A \otimes \ket{0}_B - \ket{1}_A \otimes \ket{1}_B}{\sqrt{2}}\\
-    \ket{\psi_3} &= \frac{\ket{0}_A \otimes \ket{1}_B + \ket{1}_A \otimes \ket{0}_B}{\sqrt{2}}\\
-    \ket{\psi_4} &= \frac{\ket{0}_A \otimes \ket{1}_B - \ket{1}_A \otimes \ket{0}_B}{\sqrt{2}}.
+    \ket{\psi_1} &= \frac{\ket{0}_A \otimes \ket{0}_B + \ket{1}_A \otimes \ket{1}_B}{\sqrt{2}}\label{eq:00}\\
+    \ket{\psi_2} &= \frac{\ket{0}_A \otimes \ket{0}_B - \ket{1}_A \otimes \ket{1}_B}{\sqrt{2}}\label{eq:01}\\
+    \ket{\psi_3} &= \frac{\ket{0}_A \otimes \ket{1}_B + \ket{1}_A \otimes \ket{0}_B}{\sqrt{2}}\label{eq:10}\\
+    \ket{\psi_4} &= \frac{\ket{0}_A \otimes \ket{1}_B - \ket{1}_A \otimes \ket{0}_B}{\sqrt{2}}.\label{eq:11}
 \end{align}
 I will not write the subscript A or B further, but infer that the first ket is Alice and second Bob. Applying the operator $E \otimes \I$ on the states we get the following
 \begin{align}
@@ -29,7 +29,8 @@ Writing this for the other states with fewer steps
 \end{align}
 \begin{align}
     \bra{\psi_4} E \otimes \I \ket{\psi_4} &= \frac{1}{2} ( \dbra{0}{1} - \dbra{1}{0} ) (E \dket{0}{1} - E \dket{1}{0})\\
-    &= \frac{1}{2} ( \bra{0} E \ket{0} \otimes \bra{1}\ket{1} - 0 - 0 + \bra{1}E \ket{1} )\\
+    &= \frac{1}{2} ( \bra{0} E \ket{0} \otimes \bra{1}\ket{1} - 0 - 0 + \bra{1}E \ket{1} \otimes \bra{0}\ket{0})\\
     &=\frac{\bra{0} E \ket{0} + \bra{1} E \ket{1}}{2}
 \end{align}
-\qed
+\qed\\
+Superdense coding relies on the Bell basis which consists of the Bell states seen above. The bit string 00 corresponds to $\ket{\psi_1}$, 01 corresponds to $\ket{\psi_2}$, 10 corresponds to $\ket{\psi_3}$, and 11 corresponds to $\ket{\psi_4}$. So if Eve intercepts Alice's qubit she will either intercept $\ket{+} = \frac{1}{\sqrt{2}} (\ket{0} + \ket{1})$ or $\ket{-} = \frac{1}{\sqrt{2}} (\ket{0} - \ket{1})$. This assumes that Eve knows that we transmit using the Bell basis. However, she cannot get any information out of this since $\ket{+}$ applies to both 00 and 10, and $\ket{-}$ applies to both 01 and 11. Thus since Eve does not know about Bob's state she cannot get any information.
