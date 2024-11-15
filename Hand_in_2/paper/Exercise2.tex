@@ -1,6 +1,6 @@
 \section*{Exercise 2.72}
 \paragraph{Problem:} \textbf{(Bloch sphere for mixed states)} The Bloch sphere picture for pure states of a single qubit was introduced in Section 1.2. This description has an important generalization to mixed states as follows.
-\begin{enumerate}[(1)]
+\begin{enumerate}[label=(\arabic*)]
     \item Show that an arbitrary density matrix for a mixed state qubit may be written as 
         \begin{equation}
             \rho = \frac{\I + \vec{r} \cdot \vec{\sigma}}{2},
@@ -11,4 +11,123 @@
     \item Show that for pure states the description of the Bloch vectors we have given coincides with that in Section 1.2.
 \end{enumerate}
 
-\paragraph{Solution:}
+\paragraph{(1) Solution:} We can start by creating a general density matrix for a qubit, which will be in the form
+\begin{equation}
+    \rho = \begin{bmatrix}
+        c_{00} & c_{01}\\
+        c_{10} & c_{11}
+    \end{bmatrix},
+\end{equation}
+where $c_{ij} \in \mathbb{C}$ for $i,j = 0,1$. Then we have three conditions on a density matrix
+\begin{enumerate}[label=\textit{\roman*}., leftmargin=2cm]\singlespacing
+    \item $\tr\rho = 1$
+    \item $\rho$ is unitary
+    \item $\rho$ is positive
+\end{enumerate}
+The first condition gives that $c_{00} + c_{11} = 1$.Unitarity gives that $c_{00} = c_{00}^*$, $c_{11} = c_{11}^*$, $c_{01} = c_{10}^*$. This gives us a possible parametrization 
+\begin{equation}
+        c_{00} = \frac{1+z}{2}, \quad c_{11} = \frac{1-z}{2}, \quad c_{01} = \frac{x - iy}{2}, \quad c_{10} = \frac{x+iy}{2}.
+\end{equation}
+Rewriting $\rho$
+\begin{equation}
+    \rho = \frac{1}{2}
+    \begin{bmatrix}
+        1+z & x - iy\\
+        x + iy & 1- z    
+    \end{bmatrix}.\label{eq:param}
+\end{equation}
+Now we can separate this matrix such that
+\begin{equation}
+    \begin{bmatrix}
+        1+z & x+ iy\\
+        x - iy & 1- z    
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        1 & 0\\
+        0 & 1
+    \end{bmatrix}
+    +z
+    \begin{bmatrix}
+        1 & 0\\
+        0 & -1
+    \end{bmatrix}
+    +x
+    \begin{bmatrix}
+        0 & 1\\
+        1 & 0
+    \end{bmatrix}
+    +y
+    \begin{bmatrix}
+        0 & -i\\
+        i & 0
+    \end{bmatrix}.
+\end{equation}
+We can identify these as the Pauli matrices and thus
+\begin{equation}
+    \rho = \frac{1}{2} (\I + x\sigma_x + y \sigma_y + z\sigma_z) = \frac{\I + \vec{r}\cdot \vec{\sigma}}{2},
+\end{equation}
+where $\vec{r} = (x,y,z)$ and $\vec{\sigma} =(\sigma_x,\sigma_y,\sigma_z)$. To verify $\norm{\vec{r}} \leq 1$ we use the positivity condition which is equivalent to say that all eigenvalues $\lambda$ of $\rho$ must be positive. Thus, using Eq. \eqref{eq:param} to calculate the eigenvalues we obtain
+{\everymath{\displaystyle}
+\begin{align}
+    0 &= \det (\rho - \lambda \I) = 
+    \begin{vmatrix}
+        \frac{1 + z}{2} - \lambda & \frac{x - iy}{2}\\[8pt]
+        \frac{x + iy}{2} & \frac{1- z}{2} - \lambda
+    \end{vmatrix} \\
+    &= \left(\frac{1 + z}{2} - \lambda\right) \left(\frac{1- z}{2} - \lambda\right) - \frac{x -iy}{2} \cdot \frac{x + iy}{2}\\
+    &= \frac{1- z^2}{4} -\left( \frac{1 + z}{2} + \frac{1-z}{2} \right)\lambda + \lambda^2 - \frac{x^2 + y^2}{4}\\
+    &= \lambda^2 - \lambda - \frac{x^2 + y^2 + z^2 - 1}{4}.
+\end{align}}
+Using the $pq$-formula with
+\begin{equation}
+    p = -1, \quad q = - \frac{x^2 + y^2 + z^2 - 1}{4}
+\end{equation}
+we get
+\begin{equation}
+    \lambda = -\frac{p}{2} \pm \sqrt{\frac{p^2}{4} - q} = \frac{1}{2} \pm \sqrt{\frac{x^2 + y^2 + z^2}{4}} = \frac{1}{2} \left(1 \pm \sqrt{\norm{\vec{r}}^2} \right).\label{eq:pq}
+\end{equation}
+From the definition of a density matrix we know that for the spectral decomposition the eigenvalues are probabilities. Thus $0 \leq \lambda \leq 1$, and it then follows that $\norm{\vec{r}} \leq 1$.\\
+\qed
+
+\paragraph{(2) Solution:} For the density matrix to equal $\rho = \I / 2$ we must have that $\vec{r} \cdot \vec{\sigma} = \vec{0}$. Since $\vec{\sigma}$ is non-zero we must have that $\vec{r} = \vec{0}$.\\\qed
+
+\paragraph{(3) Solution:} The density matrix of a pure state $\ket{\psi}$ can be written $\rho = \ket{\psi} \bra{\psi}$. That is, the probability of obtaining this state is 1. So if we do a spectral decomposition of the density matrix the eigenvalues must be $\lambda = 0,1$. And by Eq. \eqref{eq:pq} this happens if and only if $\norm{\vec{r}} = 1$
+
+\paragraph{(4) Solution:} According to section 1.2 we can write a pure state as 
+\begin{equation}
+    \ket{\psi} = \cos\frac{\theta}{2}\ket{0} + e^{i\varphi}\sin\frac{\theta}{2}\ket{0}.
+\end{equation}
+Since all pure states lie on the Bloch sphere, which has a radius of 1. We can switch to spherical coordinates with
+\begin{equation}
+    x = \sin\theta \cos\varphi, \quad y = \sin\theta \sin\varphi, \quad z = \cos\theta.
+\end{equation}
+Rewriting $\rho$ in Eq. \eqref{eq:param} we obtain
+{\everymath{\displaystyle}
+\begin{align}
+    \rho &= \frac{1}{2} 
+    \begin{bmatrix}
+        1 + \cos\theta & \sin\theta  \cos\varphi - i \sin\theta \sin\varphi\\
+        \sin\theta  \cos\varphi + i \sin\theta \sin\varphi & 1 - \cos\theta
+    \end{bmatrix}\\
+    &= 
+    \begin{bmatrix}
+        \frac{1 + \cos\theta}{2} & (\cos\varphi - i\sin\varphi)\frac{\sin\theta}{2}\\[8pt]
+    (\cos\varphi + i\sin\varphi)\frac{\sin\theta}{2} &  \frac{1 - \cos\theta}{2}
+    \end{bmatrix}
+\end{align}
+Using Euler's formula we can rewrite $\cos\varphi \pm i\sin\varphi = e^{\pm i \varphi}$. Then using the trigonometric identities $2\cos^2\theta = 1 + \cos 2\theta$, $2 \sin^2\theta = 1 - \cos 2\theta$ and $\sin 2\theta = 2\sin\theta \cos\theta$, we rewrite the matrix as
+\begin{align}
+    \rho &= 
+    \begin{bmatrix}
+        \cos^2\frac{\theta}{2} & e^{-i\varphi}\sin\frac{\theta}{2}\cos\frac{\theta}{2}\\[8pt]
+        e^{i\varphi}\sin\frac{\theta}{2}\cos\frac{\theta}{2} & \sin^2\frac{\theta}{2}
+    \end{bmatrix}.
+\end{align}
+Changing to state vector representation we get
+\begin{align}
+    \rho &\;\dot{=} \cos^2\frac{\theta}{2} \ket{0}\bra{0} + e^{-i\varphi}\sin\frac{\theta}{2}\cos\frac{\theta}{2} \ket{0}\bra{1} + e^{i\varphi}\sin\frac{\theta}{2}\cos\frac{\theta}{2}\ket{1}\bra{0} + \sin^2\frac{\theta}{2} \ket{1}\bra{1}\\
+    &= \left(\cos\frac{\theta}{2} \ket{0} + e^{i\varphi}\sin\frac{\theta}{2}\ket{1}\right) \cdot \left(\cos\frac{\theta}{2} \bra{0} + e^{-i\varphi}\sin\frac{\theta}{2}\bra{1}\right) \\
+    &= \ket{\psi} \bra{\psi}.
+\end{align}}
+\qed
