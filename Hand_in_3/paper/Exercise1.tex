@@ -39,6 +39,11 @@ which would look like
     \centering
     \includegraphics{threeQBcircuit.pdf}
 \end{figure}
-However, we want to show this with only single-qubit operations and two-qubit operations. This is shown in the next page. It is very wide so can be a bit hard to see. The red parts are the CCNOT gates while the blue part is the double controlled $U^T$ part, where $V$ is a unitary operator such that $V^2 = U^T$
+Showing this with only single-qubit operations and two-qubit operations. This is shown in the next page. It is very wide so can be a bit hard to see. The red parts are the CCNOT gates while the blue part is the double controlled $U^T$ part, where $V$ is a unitary operator such that $V^2 = U^T$. However, we want to only use CNOT as two qubit operations. We know that we can rewrite any controlled $O$ operator as 
+\begin{equation}
+    O = e^{i\alpha} AXBXC,\quad \text{where } ABC = \I.
+\end{equation}
+Since $O^\dagger = C^\dagger X B^\dagger X A^\dagger$ the circuit becomes what is seen on the pages after the last circuit.
 
 \includepdf[fitpaper=true]{figures/circuit.pdf}
+\includepdf[fitpaper=true]{figures/circuit_better.pdf}
